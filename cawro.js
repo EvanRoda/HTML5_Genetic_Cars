@@ -353,7 +353,7 @@ function cw_createFloorTile(position, angle) {
 
   var center = new b2Vec2(0,0);
 
-  var newcoords = cw_rotateFloorTile(coords, center, angle);
+  var newcoords = cw_rotateFloorTile(coords, center, Math.atan(angle));
 
   fix_def.shape.SetAsArray(newcoords);
 
