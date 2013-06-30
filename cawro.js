@@ -180,7 +180,9 @@ cw_Car.prototype.__constructor = function(car_def) {
 }
 
 cw_Car.prototype.getPosition = function() {
-  return this.chassis.GetPosition();
+    var w1 = this.wheel1.GetPosition();
+    var w2 = this.wheel2.GetPosition();
+    return { x : 0.5 * (w1.x + w2.x), y : 0.5 * (w1.y + w2.y) }
 }
 
 cw_Car.prototype.draw = function() {
