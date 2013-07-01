@@ -456,12 +456,7 @@ function cw_nextGeneration() {
 }
 
 function cw_getChampions() {
-  var ret = new Array();
   cw_carScores.sort(function(a,b) {if(a.v > b.v) {return -1} else {return 1}});
-  for(var k = 0; k < generationSize; k++) {
-    ret.push(cw_carScores[k].i);
-  }
-  return ret;
 }
 
 function cw_getParents() {
