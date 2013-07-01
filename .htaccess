@@ -1,0 +1,5 @@
+<ifModule mod_headers.c>
+Header unset ETag
+Header set Cache-Control "max-age=0, no-cache"
+Header set Pragma "no-cache"
+</ifModule>
