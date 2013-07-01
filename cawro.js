@@ -492,22 +492,10 @@ function cw_makeChild(car_def1, car_def2) {
   newCarDef.wheel_vertex2 = parents[curparent].wheel_vertex2;
 
   newCarDef.vertex_list = new Array();
-  curparent = cw_chooseParent(curparent,4);
-  newCarDef.vertex_list[0] = parents[curparent].vertex_list[0];
-  curparent = cw_chooseParent(curparent,5);
-  newCarDef.vertex_list[1] = parents[curparent].vertex_list[1];
-  curparent = cw_chooseParent(curparent,6);
-  newCarDef.vertex_list[2] = parents[curparent].vertex_list[2];
-  curparent = cw_chooseParent(curparent,7);
-  newCarDef.vertex_list[3] = parents[curparent].vertex_list[3];
-  curparent = cw_chooseParent(curparent,8);
-  newCarDef.vertex_list[4] = parents[curparent].vertex_list[4];
-  curparent = cw_chooseParent(curparent,9);
-  newCarDef.vertex_list[5] = parents[curparent].vertex_list[5];
-  curparent = cw_chooseParent(curparent,10);
-  newCarDef.vertex_list[6] = parents[curparent].vertex_list[6];
-  curparent = cw_chooseParent(curparent,11);
-  newCarDef.vertex_list[7] = parents[curparent].vertex_list[7];
+  for (var i = 0; i != 8; ++i) {
+      curparent = cw_chooseParent(curparent,i + 4);
+      newCarDef.vertex_list[i] = parents[curparent].vertex_list[i];
+  }
 
   curparent = cw_chooseParent(curparent,12);
   newCarDef.wheel_density1 = parents[curparent].wheel_density1;
