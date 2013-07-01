@@ -122,7 +122,6 @@ cw_Car.prototype.__constructor = function(car_def) {
   this.velocityIndex = 0;
   this.health = max_car_health;
   this.maxPosition = 0;
-  this.maxScore = 0;
   this.maxPositiony = 0;
   this.minPositiony = 0;
   this.frames = 0;
@@ -194,7 +193,7 @@ cw_Car.prototype.draw = function() {
 cw_Car.prototype.kill = function() {
   var avgspeed = (this.maxPosition / this.frames) * box2dfps;
   var position = this.maxPosition;
-  var score = this.maxScore;
+  var score = this.maxPosition;
   ghost_compare_to_replay(this.replay, ghost, score);
   cw_carScores.push({ car_def:this.car_def, v:score, s: avgspeed, x:position, y:this.maxPositiony, y2:this.minPositiony });
   world.DestroyBody(this.chassis);
@@ -214,8 +213,6 @@ cw_Car.prototype.checkDeath = function() {
   }
   var maxPosition = this.maxPosition;
   var score = position.x + 0.5 * position.y;
-  if (score > this.maxScore)
-      this.maxScore = score;
   if (position.x >= maxPosition)
     this.maxPosition = position.x;
 
