@@ -314,6 +314,50 @@ function cw_createRandomCar() {
   return car_def;
 }
 
+function cw_createCustomCar() {
+    var v2;
+    var car_def = new Object();
+    car_def.index = 19;
+    car_def.is_elite = false;
+    car_def.wheel_radius1 = ($('#w1r').val())*wheelMaxRadius+wheelMinRadius;
+    car_def.wheel_radius2 = ($('#w2r').val())*wheelMaxRadius+wheelMinRadius;
+    car_def.wheel_density1 = ($('#w1d').val())*wheelMaxDensity+wheelMinDensity;
+    car_def.wheel_density2 = ($('#w2d').val())*wheelMaxDensity+wheelMinDensity;
+
+    car_def.vertex_list = new Array();
+
+    car_def.vertex_list.push(new b2Vec2(($('#v1a1').val())*chassisMaxAxis + chassisMinAxis,0));
+    car_def.vertex_list.push(new b2Vec2(($('#v2a1').val())*chassisMaxAxis + chassisMinAxis,($('#v2a2').val())*chassisMaxAxis + chassisMinAxis));
+    car_def.vertex_list.push(new b2Vec2(0,($('#v3a2').val())*chassisMaxAxis + chassisMinAxis));
+    car_def.vertex_list.push(new b2Vec2(-($('#v4a1').val())*chassisMaxAxis - chassisMinAxis,($('#v4a2').val())*chassisMaxAxis + chassisMinAxis));
+    car_def.vertex_list.push(new b2Vec2(-($('#v5a1').val())*chassisMaxAxis - chassisMinAxis,0));
+    car_def.vertex_list.push(new b2Vec2(-($('#v6a1').val())*chassisMaxAxis - chassisMinAxis,-($('#v6a2').val())*chassisMaxAxis - chassisMinAxis));
+    car_def.vertex_list.push(new b2Vec2(0,-($('#v7a2').val())*chassisMaxAxis - chassisMinAxis));
+    car_def.vertex_list.push(new b2Vec2(($('#v8a1').val())*chassisMaxAxis + chassisMinAxis,-($('#v8a2').val())*chassisMaxAxis - chassisMinAxis));
+
+    car_def.wheel_vertex1 = $('#wv1').val() - 1;
+    if(car_def.wheel_vertex1 >= 8){
+        car_def.wheel_vertex1 = 7;
+    }else if (car_def.wheel_vertex1 < 0){
+        car_def.wheel_vertex1 = 0;
+    }
+    car_def.wheel_vertex2 = $('#wv2').val() - 1;
+    if(car_def.wheel_vertex2 >= 8){
+        car_def.wheel_vertex2 = 7;
+    }else if (car_def.wheel_vertex2 < 0){
+        car_def.wheel_vertex2 = 0;
+    }
+    if(car_def.wheel_vertex1 == car_def.wheel_vertex2){
+        v2 = car_def.wheel_vertex1;
+        while(v2 == car_def.wheel_vertex1) {
+            v2 = Math.floor(Math.random()*8)%8
+        }
+        car_def.wheel_vertex2 = v2;
+    }
+
+    return car_def;
+}
+
 /* === END Car ============================================================= */
 /* ========================================================================= */
 
@@ -442,6 +486,7 @@ function cw_nextGeneration() {
     //document.getElementById("bar"+k).src = "reddot.png";
     newGeneration.push(newborn);
   }
+  newGeneration.splice(19, 1, cw_createCustomCar());
   cw_carScores = new Array();
   cw_carGeneration = newGeneration;
   gen_counter++;
